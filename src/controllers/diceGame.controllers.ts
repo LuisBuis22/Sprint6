@@ -14,11 +14,11 @@ export const playerRollDice = async (req: Request, res: Response)=>{
         
     } catch (error) {
         res.status(400).json({
-            msg: `the id isn'tsss valid`
+            msg: `the id isn't valid`
         })
     }
 }
-export const generalRanking =async (req: Request, res: Response)=>{
+export const generalRanking =async (_req: Request, res: Response)=>{
     try {
         const ranking = await RollGame.generalRanking()
         res.status(201).json({

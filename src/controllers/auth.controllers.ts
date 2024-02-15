@@ -4,22 +4,35 @@ import Auth from "../helpers/auth";
 export const register = async (req: Request, res: Response) => {
   try {
     
-    let { name , password, id } = req.body;
-    console.log(name)
-    const date = new Date();
     let defValue = 'anon'
-    const player = new Auth( name=defValue,  password, id )
-    
- 
-    const register = await player.register();
-
-    res.status(201).json({
+    let { name , password, id } = req.body;
+   
+    const date = new Date();
+    if(!name){
+      const player = new Auth( name=defValue,  password, id )
       
-      password,
-      name,
-      date,
-      jwt: register
-    })
+      
+      const register = await player.register();
+      
+      res.status(201).json({
+        password,
+        name,
+        date,
+        jwt: register
+      })
+    }else{
+      const player = new Auth( name,  password, id )
+      
+      
+      const register = await player.register();
+      
+      res.status(201).json({
+        password,
+        name,
+        date,
+        jwt: register
+      })
+    }
 
 
 
